@@ -11,6 +11,8 @@ __pycache__/
 .venv/
 env/
 venv/
+uv.lock
+examples/credential.json
 
 *.env*
 .env_example
@@ -51,6 +53,9 @@ rag_storage*/
 examples/input/
 examples/output/
 output*/
+examples/credential.json
+examples/foundationpose.pdf
+examples/example.bash
 
 # Miscellaneous
 .DS_Store

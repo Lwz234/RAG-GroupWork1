@@ -104,6 +104,12 @@ async def process_with_rag(
         base_url: Optional base URL for API
         working_dir: Working directory for RAG storage
     """
+    # llm&vlm model config
+    llm_model_name = "qwen-plus"
+    vlm_model_name = "qwen-vl-max"
+    embedding_model_name = "text-embedding-v3"
+    embedding_dim = 1024
+    max_token_size = 8192
     try:
         # Create RAGAnything configuration
         config = RAGAnythingConfig(
@@ -118,7 +124,7 @@ async def process_with_rag(
         # Define LLM model function
         def llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs):
             return openai_complete_if_cache(
-                "gpt-4o-mini",
+                llm_model_name,  
                 prompt,
                 system_prompt=system_prompt,
                 history_messages=history_messages,
@@ -139,7 +145,7 @@ async def process_with_rag(
             # If messages format is provided (for multimodal VLM enhanced query), use it directly
             if messages:
                 return openai_complete_if_cache(
-                    "gpt-4o",
+                    vlm_model_name,  
                     "",
                     system_prompt=None,
                     history_messages=[],
@@ -151,7 +157,7 @@ async def process_with_rag(
             # Traditional single image format
             elif image_data:
                 return openai_complete_if_cache(
-                    "gpt-4o",
+                    vlm_model_name,  
                     "",
                     system_prompt=None,
                     history_messages=[],
@@ -184,11 +190,11 @@ async def process_with_rag(
 
         # Define embedding function
         embedding_func = EmbeddingFunc(
-            embedding_dim=3072,
-            max_token_size=8192,
+            embedding_dim=embedding_dim,  
+            max_token_size=max_token_size,
             func=lambda texts: openai_embed(
                 texts,
-                model="text-embedding-3-large",
+                model=embedding_model_name, 
                 api_key=api_key,
                 base_url=base_url,
             ),
@@ -204,7 +210,7 @@ async def process_with_rag(
 
         # Process document
         await rag.process_document_complete(
-            file_path=file_path, output_dir=output_dir, parse_method="auto"
+            file_path=file_path, output_dir=output_dir, parse_method="auto", source='modelscope'
         )
 
         # Example queries - demonstrating different query approaches
