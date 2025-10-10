@@ -218,8 +218,8 @@ async def process_with_rag(
 
         # 1. Pure text queries using aquery()
         text_queries = [
-            "What is the main content of the document?",
-            "What are the key topics discussed?",
+            "What is the most significant innovation of this article",
+            # "What are the key topics discussed?",
         ]
 
         for query in text_queries:
