@@ -2,8 +2,11 @@
 
 reference：[RAGAnything](https://github.com/HKUDS/RAG-Anything) 
 ## 🔄 RAG流程
+简易流程：
+![[assets/rag.png]]
+repo 采用的RAGAnything 框架流程：
+![[assets/rag_anything_framework.png]]
 
-![[Gemini_Generated_Image_9ajk129ajk129ajk.png]]
 ### 📋 流程描述：（下面仅考虑纯文本 query 情形，多模态 query 暂不考虑）
 
 完整rag流程详见 `examples/raganything_example.py`的`process_with_rag`函数
