@@ -3,7 +3,11 @@
 reference：[RAGAnything](https://github.com/HKUDS/RAG-Anything) 
 ## 🔄 RAG流程
 简易流程：
-![[assets/rag.png]]
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid #00d9ff; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);">
+
+<img src="assets/rag.png" alt="RAG-simple" />
+
+</div>
 
 repo 采用的RAGAnything 框架流程：
 <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid #00d9ff; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);">
