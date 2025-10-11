@@ -121,13 +121,15 @@ lightrag_kwargs={
 
 ## 🚀 Quick Start
 
+首先fork此仓库`https://github.com/Zhanglin-Li/RAG-GroupWork`
+
 未安装 uv 则需先安装：
 ```bash
 pip install uv
 ```
-使用 uv 搭建环境：
+clone fork 后的仓库，并使用 uv 搭建环境：
 ```bash
-git clone https://github.com/Zhanglin-Li/RAG-GroupWork.git
+git clone https://github.com/your_name/RAG-GroupWork.git
 cd RAG-GroupWork
 uv sync
 ```
@@ -153,4 +155,4 @@ max_token_size = 8192
 
 - 原仓库的 example 中rag.process_document_complete方法没有指定minerU parser 的 source='modelscope'，在不翻墙情况下会有网络问题， 显式指定即可解决。
 - 一次解析完成会将KG 和 VDB 储存在 ./rag_storage 目录下，后续处理同一批文档时会直接使用，不重复解析。
-- 文档处理（解析和数据库构建）是速度瓶颈，cpu 解析一篇 pdf 并构建数据库可能需要数 min，可先用一篇简单pdf试验，再在若干文献上试验。
+- 文档处理（解析和数据库构建）非常慢，cpu 处理仅一篇 pdf 并构建数据库可能需要数分钟，（或许可用 gpu 但未尝试），可先用一篇简单pdf试验，再在若干文献上试验。
