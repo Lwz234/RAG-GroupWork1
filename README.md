@@ -125,7 +125,7 @@ lightrag_kwargs={
 
 未安装 uv 则需先安装：
 ```bash
-pip install uv
+ python -m pip install uv
 ```
 clone fork 后的仓库，并使用 uv 搭建环境：
 ```bash
