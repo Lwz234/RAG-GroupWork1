@@ -15,7 +15,7 @@ import asyncio
 import logging
 import logging.config
 from pathlib import Path
-
+import json
 # Add project root directory to Python path
 import sys
 
@@ -214,18 +214,33 @@ async def process_with_rag(
         )
 
         # Example queries - demonstrating different query approaches
-        logger.info("\nQuerying processed document:")
+        # === Load queries from queries.json === 
+        logger.info("\nQuerying processed document (using queries.json):")
+        queries_file = "/mnt/data/queries.json"
+        if not os.path.exists(queries_file):
+            logger.error(f"queries.json not found at: {queries_file}")
+        else:
+            with open(queries_file, "r", encoding="utf-8") as f:
+                queries = json.load(f)
+            for q in queries:
+                query_text = q.get("query")
+                if not query_text:
+                    continue
+                logger.info(f"\n[Text Query]: {query_text}")
+                result = await rag.aquery(query_text, mode="hybrid")
+                logger.info(f"Answer: {result}")
 
+        # logger.info("\nQuerying processed document:")
         # 1. Pure text queries using aquery()
-        text_queries = [
-            "What is the most significant innovation of this article",
-            # "What are the key topics discussed?",
-        ]
+        # text_queries = [
+        #    "What is the most significant innovation of this article",
+        #    # "What are the key topics discussed?",
+        # ]
 
-        for query in text_queries:
-            logger.info(f"\n[Text Query]: {query}")
-            result = await rag.aquery(query, mode="hybrid")
-            logger.info(f"Answer: {result}")
+        # for query in text_queries:
+        #    logger.info(f"\n[Text Query]: {query}")
+        #    result = await rag.aquery(query, mode="hybrid")
+        #    logger.info(f"Answer: {result}")
 
         # 2. Multimodal query with specific multimodal content using aquery_with_multimodal()
         # logger.info(
